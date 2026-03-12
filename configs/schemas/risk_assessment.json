@@ -1,0 +1,48 @@
+{
+  "$defs": {
+    "RiskTypeEnum": {
+      "enum": [
+        "suicidal_ideation",
+        "suicidal_plan",
+        "self_harm",
+        "hopelessness",
+        "none"
+      ],
+      "title": "RiskTypeEnum",
+      "type": "string"
+    }
+  },
+  "description": "Risk monitor LLM confirmation schema.",
+  "properties": {
+    "risk_detected": {
+      "description": "Whether any risk signal is present.",
+      "title": "Risk Detected",
+      "type": "boolean"
+    },
+    "risk_type": {
+      "$ref": "#/$defs/RiskTypeEnum",
+      "description": "Most severe detected risk type according to configured priority."
+    },
+    "confidence": {
+      "description": "Confidence score assigned by the reviewer model.",
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "evidence": {
+      "description": "Verbatim evidence snippet supporting the risk assessment.",
+      "minLength": 1,
+      "title": "Evidence",
+      "type": "string"
+    }
+  },
+  "required": [
+    "risk_detected",
+    "risk_type",
+    "confidence",
+    "evidence"
+  ],
+  "title": "RiskAssessment",
+  "type": "object"
+}

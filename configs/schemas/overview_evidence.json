@@ -1,0 +1,102 @@
+{
+  "description": "Schema for overview stage evidence collection.",
+  "properties": {
+    "presenting_problem": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Primary reason for visit captured verbatim when possible.",
+      "title": "Presenting Problem"
+    },
+    "onset_and_context": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Narrative describing when the issue started and precipitating context.",
+      "title": "Onset And Context"
+    },
+    "prior_history": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Previous treatment or relevant history if explicitly mentioned.",
+      "title": "Prior History"
+    },
+    "suicide_history": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Historical reference to self-harm or suicidal ideation if acknowledged.",
+      "title": "Suicide History"
+    },
+    "recent_suicidal_thoughts": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Whether participant reported suicidal thoughts within the last week.",
+      "title": "Recent Suicidal Thoughts"
+    },
+    "substance_use_summary": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Summary of substance or alcohol use noted during overview.",
+      "title": "Substance Use Summary"
+    },
+    "medication_history": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Prior medication usage or hospitalisation details if provided.",
+      "title": "Medication History"
+    }
+  },
+  "title": "OverviewEvidence",
+  "type": "object"
+}

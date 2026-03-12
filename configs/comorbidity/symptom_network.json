@@ -1,0 +1,13 @@
+{
+  "clusters": [
+    {
+      "name": "mood_anxiety_overlap",
+      "modules": [
+        "CORE_MODULE_MOOD",
+        "CORE_MODULE_ANXIETY"
+      ],
+      "threshold": 2,
+      "notes": "Toy overlap used to demonstrate deterministic appendix generation."
+    }
+  ]
+}

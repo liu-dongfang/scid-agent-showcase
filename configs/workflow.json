@@ -1,0 +1,62 @@
+{
+  "initial_phase": "Overview",
+  "enable_comorbidity_appendix": true,
+  "comorbidity_config_path": "comorbidity/symptom_network.json",
+  "phases": {
+    "Overview": {
+      "items_path": "questions/overview.json",
+      "completion_requires": [
+        "presenting_problem",
+        "onset_and_context"
+      ],
+      "next_phase": "Screening"
+    },
+    "Screening": {
+      "items_path": "questions/screening.json",
+      "completion_requires": [
+        "all_items_asked"
+      ],
+      "next_phase": "CoreModules"
+    },
+    "CoreModules": {
+      "items_manifest": [
+        {
+          "module": "CORE_MODULE_MOOD",
+          "items_path": "questions/core_mood.json"
+        },
+        {
+          "module": "CORE_MODULE_ANXIETY",
+          "items_path": "questions/core_anxiety.json"
+        }
+      ],
+      "completion_requires": [
+        "activation_queue_empty"
+      ],
+      "next_phase": "ComorbidityAppendix"
+    },
+    "ComorbidityAppendix": {
+      "items_path": null,
+      "next_phase": "Differential"
+    },
+    "Differential": {
+      "items_path": null,
+      "next_phase": "ClinicalSignificance"
+    },
+    "ClinicalSignificance": {
+      "items_path": null,
+      "next_phase": "Reporting"
+    },
+    "Reporting": {
+      "items_path": null,
+      "next_phase": null
+    }
+  },
+  "events": {
+    "USER_TEXT": "Incoming user text",
+    "MISSING_FIELD": "Structured extraction missed a required field",
+    "SCHEMA_VIOLATION": "Structured payload failed validation",
+    "PHASE_DONE": "Current phase completed",
+    "MODULE_DONE": "Current module completed",
+    "EXPORT_REPORT": "Generate a compact replay summary"
+  }
+}

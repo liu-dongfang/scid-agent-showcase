@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SCID_EvaluatorDecision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fitness",
+    "missing_info_hints",
+    "style_guidelines",
+    "decision",
+    "reason",
+    "error_flag"
+  ],
+  "properties": {
+    "fitness": {
+      "type": "object",
+      "required": [
+        "overall"
+      ],
+      "properties": {
+        "by_criterion": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "covered": {
+                "oneOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "quality": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 1
+              },
+              "evidence": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "default": {}
+        },
+        "overall": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "missing_info_hints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "style_guidelines": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "move_on",
+        "follow_up"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "error_flag": {
+      "type": "boolean",
+      "default": false
+    },
+    "safety_hint": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "error_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "phase": "Screening",
+  "items": [
+    {
+      "module": "Screening",
+      "item_id": "SCR_low_mood",
+      "description": "Toy screening item for low mood.",
+      "maps_to_module": "CORE_MODULE_MOOD",
+      "requires": [
+        "binary_response"
+      ],
+      "schema": "screening_response",
+      "anchors": [
+        "Have there been stretches where low mood stayed with you for most days?"
+      ],
+      "followups": {},
+      "constraints": {
+        "response_type": [
+          "YES",
+          "NO",
+          "UNSURE"
+        ],
+        "disallow_followups": true
+      }
+    },
+    {
+      "module": "Screening",
+      "item_id": "SCR_high_arousal",
+      "description": "Toy screening item for anxiety-like activation.",
+      "maps_to_module": "CORE_MODULE_ANXIETY",
+      "requires": [
+        "binary_response"
+      ],
+      "schema": "screening_response",
+      "anchors": [
+        "Have you also had episodes of high tension, fear, or panic that disrupted your routine?"
+      ],
+      "followups": {},
+      "constraints": {
+        "response_type": [
+          "YES",
+          "NO",
+          "UNSURE"
+        ],
+        "disallow_followups": true
+      }
+    }
+  ]
+}

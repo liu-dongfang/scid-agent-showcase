@@ -1,0 +1,15 @@
+app:
+  debug: true
+  workflow_path: configs/workflow.json
+  transcript_example: examples/transcripts/synthetic_case.md
+
+logging:
+  level: INFO
+
+llm:
+  enabled: false
+  provider: openai-compatible
+  interviewer_model: gpt-4o-mini
+  extractor_model: gpt-4o-mini
+  evaluator_model: gpt-4o-mini
+  note: Placeholder values only. The public showcase runs without real API credentials.

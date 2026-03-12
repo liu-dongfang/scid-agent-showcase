@@ -1,0 +1,84 @@
+{
+  "$defs": {
+    "ImpairmentDomainEnum": {
+      "enum": [
+        "work",
+        "social",
+        "self_care",
+        "family",
+        "education"
+      ],
+      "title": "ImpairmentDomainEnum",
+      "type": "string"
+    }
+  },
+  "description": "Schema capturing panic attack characteristics.",
+  "properties": {
+    "unexpected_onset": {
+      "description": "Whether the episode onset felt unexpected.",
+      "title": "Unexpected Onset",
+      "type": "boolean"
+    },
+    "peak_in_minutes": {
+      "description": "Symptom intensity reached peak within minutes.",
+      "title": "Peak In Minutes",
+      "type": "boolean"
+    },
+    "symptom_count": {
+      "description": "Number of simultaneous DSM panic symptoms the user mentioned.",
+      "maximum": 13,
+      "minimum": 0,
+      "title": "Symptom Count",
+      "type": "integer"
+    },
+    "avoidance_behavior": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Whether participant avoided situations due to fear of future attacks.",
+      "title": "Avoidance Behavior"
+    },
+    "impairment_domains": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/ImpairmentDomainEnum"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Functional impact domains relevant to panic episodes.",
+      "title": "Impairment Domains"
+    },
+    "source_snippet": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Direct participant quote supporting the extraction.",
+      "title": "Source Snippet"
+    }
+  },
+  "required": [
+    "unexpected_onset",
+    "peak_in_minutes",
+    "symptom_count"
+  ],
+  "title": "PanicAttackEvidence",
+  "type": "object"
+}

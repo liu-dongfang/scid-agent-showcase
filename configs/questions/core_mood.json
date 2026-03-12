@@ -1,0 +1,42 @@
+{
+  "module": "CORE_MODULE_MOOD",
+  "description": "Toy mood module used for the public showcase.",
+  "items": [
+    {
+      "item_id": "MOOD_sleep_disruption",
+      "requires": [
+        "presence",
+        "duration_weeks",
+        "frequency",
+        "impairment_domains"
+      ],
+      "schema": "core_symptom_evidence",
+      "anchors": [
+        "During the difficult period, was your sleep noticeably worse?"
+      ],
+      "followups": {
+        "duration_weeks": "Roughly how many weeks did that last?",
+        "frequency": "Was it happening most days or only sometimes?",
+        "impairment_domains": "What part of daily life did it affect most?"
+      }
+    },
+    {
+      "item_id": "MOOD_loss_of_interest",
+      "requires": [
+        "presence",
+        "duration_weeks",
+        "frequency",
+        "impairment_domains"
+      ],
+      "schema": "core_symptom_evidence",
+      "anchors": [
+        "Did activities that were usually enjoyable start feeling flat or effortful?"
+      ],
+      "followups": {
+        "duration_weeks": "How long did that change stay noticeable?",
+        "frequency": "Did it show up most days?",
+        "impairment_domains": "Did it affect work, social life, or something else?"
+      }
+    }
+  ]
+}

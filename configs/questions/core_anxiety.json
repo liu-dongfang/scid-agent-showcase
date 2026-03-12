@@ -1,0 +1,41 @@
+{
+  "module": "CORE_MODULE_ANXIETY",
+  "description": "Toy anxiety module used for the public showcase.",
+  "items": [
+    {
+      "item_id": "ANX_worry_cycle",
+      "requires": [
+        "presence",
+        "duration_weeks",
+        "frequency",
+        "impairment_domains"
+      ],
+      "schema": "core_symptom_evidence",
+      "anchors": [
+        "Was there an extended period where worry felt hard to turn off?"
+      ],
+      "followups": {
+        "duration_weeks": "About how long did that run for?",
+        "frequency": "Was it there most days?",
+        "impairment_domains": "What did it interfere with?"
+      }
+    },
+    {
+      "item_id": "ANX_panic_like_episode",
+      "requires": [
+        "unexpected_onset",
+        "peak_in_minutes",
+        "symptom_count",
+        "impairment_domains"
+      ],
+      "schema": "panic_attack_evidence",
+      "anchors": [
+        "Did you have any sharp spikes of fear or activation that peaked quickly?"
+      ],
+      "followups": {
+        "symptom_count": "How many body or thought symptoms were happening at once?",
+        "impairment_domains": "What did that change about your day afterward?"
+      }
+    }
+  ]
+}

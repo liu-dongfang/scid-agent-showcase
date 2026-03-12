@@ -1,0 +1,100 @@
+{
+  "$defs": {
+    "FrequencyEnum": {
+      "enum": [
+        "almost_daily",
+        "several_times_week",
+        "occasional",
+        "rare"
+      ],
+      "title": "FrequencyEnum",
+      "type": "string"
+    },
+    "ImpairmentDomainEnum": {
+      "enum": [
+        "work",
+        "social",
+        "self_care",
+        "family",
+        "education"
+      ],
+      "title": "ImpairmentDomainEnum",
+      "type": "string"
+    }
+  },
+  "description": "Symptom schema specifically for Major Depressive Episode criterion A1 (depressed mood).",
+  "properties": {
+    "presence": {
+      "description": "Whether the symptom is present in the target window.",
+      "title": "Presence",
+      "type": "boolean"
+    },
+    "duration_weeks": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Duration of the symptom in weeks. Include 0 if less than one week.",
+      "title": "Duration Weeks"
+    },
+    "frequency": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/FrequencyEnum"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Approximate frequency categorisation in the observation period."
+    },
+    "impairment_domains": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/ImpairmentDomainEnum"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Functional domains impaired due to the symptom. Empty or null if none.",
+      "title": "Impairment Domains"
+    },
+    "source_snippet": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Verbatim snippet supporting the extraction for audit trail.",
+      "title": "Source Snippet"
+    },
+    "symptom_code": {
+      "const": "MDE_A1",
+      "default": "MDE_A1",
+      "description": "Fixed identifier referencing DSM-5 A1 criterion for depressed mood.",
+      "title": "Symptom Code",
+      "type": "string"
+    }
+  },
+  "required": [
+    "presence"
+  ],
+  "title": "MDECriterionA1",
+  "type": "object"
+}

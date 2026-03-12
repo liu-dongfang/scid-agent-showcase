@@ -1,0 +1,34 @@
+{
+  "phase": "Overview",
+  "items": [
+    {
+      "module": "Overview",
+      "item_id": "opening_context",
+      "description": "Synthetic opening item for public demonstration.",
+      "requires": [
+        "presenting_problem",
+        "onset_and_context"
+      ],
+      "schema": "overview_evidence",
+      "anchors": [
+        "What has been most disruptive for you over the last few weeks?"
+      ],
+      "followups": {
+        "onset_and_context": "When did you first start noticing that pattern?"
+      }
+    },
+    {
+      "module": "Overview",
+      "item_id": "coping_history",
+      "description": "Toy item showing follow-up history capture.",
+      "requires": [
+        "prior_history"
+      ],
+      "schema": "overview_evidence",
+      "anchors": [
+        "Have you tried anything before this interview to manage those changes?"
+      ],
+      "followups": {}
+    }
+  ]
+}

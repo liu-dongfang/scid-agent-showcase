@@ -1,0 +1,38 @@
+{
+  "$defs": {
+    "BinaryResponseEnum": {
+      "enum": [
+        "YES",
+        "NO",
+        "UNSURE"
+      ],
+      "title": "BinaryResponseEnum",
+      "type": "string"
+    }
+  },
+  "description": "Binary screening response captured during screening phase.",
+  "properties": {
+    "binary_response": {
+      "$ref": "#/$defs/BinaryResponseEnum",
+      "description": "One of YES/NO/UNSURE values representing participant selection."
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional clarifying short note mirrored from user when provided.",
+      "title": "Notes"
+    }
+  },
+  "required": [
+    "binary_response"
+  ],
+  "title": "ScreeningResponse",
+  "type": "object"
+}

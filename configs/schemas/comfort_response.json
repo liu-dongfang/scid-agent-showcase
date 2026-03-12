@@ -1,0 +1,16 @@
+{
+  "description": "Structured payload for de-escalation prompts.",
+  "properties": {
+    "message": {
+      "description": "Comforting message to send to the user.",
+      "minLength": 5,
+      "title": "Message",
+      "type": "string"
+    }
+  },
+  "required": [
+    "message"
+  ],
+  "title": "ComfortResponse",
+  "type": "object"
+}
