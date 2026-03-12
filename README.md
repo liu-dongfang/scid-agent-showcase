@@ -10,6 +10,15 @@ This is a research prototype / showcase repo derived from a larger private SCID 
 
 The code here focuses on deterministic interview flow control, schema-backed evidence collection, structured logging, and transcript replay. All included examples are synthetic.
 
+## Start Here
+
+If you're reviewing this repository for research or engineering collaboration, start with:
+
+1. `docs/architecture.md` for the system layout and the rationale for the public subset
+2. `examples/run_showcase.py` for the minimal executable showcase path
+3. `docs/public_release_manifest.md` for what is included and intentionally excluded
+4. `tests/` for lightweight behavior checks on the public subset
+
 ## System Architecture
 
 ![Architecture overview](assets/fig1.png)
@@ -55,6 +64,17 @@ This public repository does not include:
 - No clinical claims should be made from these examples.
 - Replay examples are for engineering inspection only and do not represent real patient records.
 
+## Collaboration
+
+I am especially open to collaboration on:
+
+- workflow orchestration for LLM agents
+- schema-governed extraction and structured outputs
+- replay and evaluation for long-horizon dialogue systems
+- safe synthetic benchmarks for mental-health-related AI workflows
+
+If you want to discuss research or engineering collaboration, please open an issue first. For small improvements to the public subset, see `CONTRIBUTING.md`.
+
 ## Quickstart
 
 ```bash
@@ -71,7 +91,9 @@ Useful files:
 
 - [config.example.yaml](config.example.yaml)
 - [.env.example](.env.example)
+- [CONTRIBUTING.md](CONTRIBUTING.md)
 - [docs/public_release_manifest.md](docs/public_release_manifest.md)
+- [assets/social-preview.png](assets/social-preview.png)
 
 ## Repository Tree
 
