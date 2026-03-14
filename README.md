@@ -4,7 +4,7 @@ A controllable LLM-agent workflow for high-risk structured clinical interviewing
 
 > Public showcase only. This repository is not a clinical diagnostic tool or medical device.
 
-![SCID showcase overview](assets/social-preview.png)
+![SCID system overview](assets/social-preview.png)
 
 This repository highlights:
 - Flow-controlled orchestration for structured interview phases and module progression
