@@ -1,79 +1,70 @@
 # scid-agent-showcase
 
-A public showcase of the orchestration layer behind a structured clinical interview research prototype, using only synthetic configuration and toy replay examples.
+A controllable LLM-agent workflow for high-risk structured clinical interviewing, packaged as a public engineering showcase with synthetic configs and replay examples.
 
-This repository is a public showcase version for research communication and engineering demonstration. It is not a clinical diagnostic tool or medical device.
+> Public showcase only. This repository is not a clinical diagnostic tool or medical device.
 
-## Project Overview
+![SCID hero interface](assets/readme/hero-dialogue.png)
 
-This is a research prototype / showcase repo derived from a larger private SCID project. The goal of this public version is to expose the engineering shape of the system without exposing the full research repository, real data, private prompts, or paper-specific experimental assets.
+This repository highlights:
+- Flow-controlled orchestration for structured interview phases and module progression
+- Risk-aware interruption, trace logging, and replayable session review
+- A paper-backed system subset that stays inspectable without private data or unpublished assets
 
-The code here focuses on deterministic interview flow control, schema-backed evidence collection, structured logging, and transcript replay. All included examples are synthetic.
+**Demo:** [Watch 60s demo](docs/demo/scid-demo-60s.mp4) · [Read architecture notes](docs/architecture.md) · [Run the showcase](#quickstart)
 
-## Start Here
+## Overview
 
-If you're reviewing this repository for research or engineering collaboration, start with:
+`scid-agent-showcase` is the public-facing subset of a larger research prototype for structured clinical interviewing. The code here is intentionally narrowed to the parts that are most useful for engineering review: interview flow control, schema-backed evidence collection, structured logging, transcript replay, and compact report reconstruction.
 
-1. `docs/architecture.md` for the system layout and the rationale for the public subset
-2. `examples/run_showcase.py` for the minimal executable showcase path
-3. `docs/public_release_manifest.md` for what is included and intentionally excluded
-4. `tests/` for lightweight behavior checks on the public subset
+Everything included in this repository is synthetic or safe to share. Private prompts, unpublished evaluation assets, real data, and internal experiment materials are intentionally excluded.
 
-## System Architecture
+## Interface
 
-![Architecture overview](assets/fig1.png)
+| Core module dialogue | Structured screening |
+| --- | --- |
+| ![Core module dialogue](assets/readme/hero-dialogue.png) | ![Screening interface](assets/readme/screening-dialogue.png) |
 
-The public subset centers on four pieces:
+- The dialogue surface makes phase progression readable instead of hiding workflow decisions behind a generic chat shell.
+- The screening view shows how structured yes/no turns map cleanly to controlled state transitions.
+- These screenshots come from the runnable demo layer used in the portfolio and paper appendix workflow.
 
-- `server/orchestrator/flow_controller.py`: deterministic phase and module progression
-- `packages/schemas/`: Pydantic models, schema registry, and JSON schema export
-- `server/utils/logger.py`: structured logging wrapper used across orchestration components
-- `server/services/transcript_importer.py` and `server/services/report_service.py`: replay/import and compact report reconstruction
+## System Design
 
-Architecture notes and diagram: [docs/architecture.md](docs/architecture.md)
+![SCID architecture](assets/readme/architecture.png)
 
-## What I Was Responsible For
+The public subset is centered around four inspectable areas:
+- [`server/orchestrator/flow_controller.py`](server/orchestrator/flow_controller.py): deterministic phase, module, and transition logic
+- [`packages/schemas/`](packages/schemas): structured extraction contracts and JSON schema export
+- [`server/utils/logger.py`](server/utils/logger.py): event logging and trace-friendly instrumentation
+- [`server/services/transcript_importer.py`](server/services/transcript_importer.py) and [`server/services/report_service.py`](server/services/report_service.py): replay import and compact report reconstruction
 
-This showcase is structured around the parts I want interviewers to review:
+## Evaluation / Replay
+
+![Evaluation and replay loop](assets/readme/eval-loop.png)
+
+- Risk-first checks can interrupt or skip unsafe branches before continuing the workflow.
+- Session actions and structured logs make behavior reviewable across workflow versions.
+- Replay and report reconstruction turn long dialogue traces into inspectable engineering artifacts instead of one-off demos.
+
+## What I Built
 
 - Workflow and state-machine design for phase transitions, module activation, and failure handling
-- Schema design for structured extraction contracts and exportable JSON schemas
-- Observability primitives, including event history, trace capture, and replay/report reconstruction
-- Developer-facing examples and tests that make the orchestration behavior inspectable without private assets
+- Schema design for evidence collection, extraction contracts, and exportable JSON schemas
+- Replay, logging, and report-packaging paths for inspectable end-to-end review
+- Public showcase packaging, documentation, and runnable examples for hiring and collaboration review
 
 ## Public Scope
 
-This public repository includes:
+Included here:
+- Safe-to-share orchestration, schema, logging, and replay code
+- Synthetic workflow definitions and toy transcript assets
+- Lightweight tests and example runners for fast inspection
 
-- Safe-to-share orchestration, controller, schema, logging, and replay code
-- Synthetic workflow definitions and toy question manifests
-- Example transcript replay assets
-- Minimal packaging, environment templates, and architecture documentation
-
-This public repository does not include:
-
+Intentionally excluded:
 - Real or sensitive data
-- Private keys, tokens, or local environment files
-- The full paper experiment set, evaluation resources, notebooks, or unpublished prompt assets
-- Large logs, unreviewed outputs, or internal deployment leftovers
-
-## Limitations
-
-- This is not the full research repository.
-- The workflow files are intentionally synthetic and much smaller than the private project.
-- No clinical claims should be made from these examples.
-- Replay examples are for engineering inspection only and do not represent real patient records.
-
-## Collaboration
-
-I am especially open to collaboration on:
-
-- workflow orchestration for LLM agents
-- schema-governed extraction and structured outputs
-- replay and evaluation for long-horizon dialogue systems
-- safe synthetic benchmarks for mental-health-related AI workflows
-
-If you want to discuss research or engineering collaboration, please open an issue first. For small improvements to the public subset, see `CONTRIBUTING.md`.
+- Private prompts, keys, local environment files, and unpublished paper assets
+- Large internal logs, unreviewed outputs, and deployment leftovers
 
 ## Quickstart
 
@@ -88,14 +79,13 @@ python examples/run_showcase.py
 ```
 
 Useful files:
-
+- [docs/architecture.md](docs/architecture.md)
+- [docs/public_release_manifest.md](docs/public_release_manifest.md)
 - [config.example.yaml](config.example.yaml)
 - [.env.example](.env.example)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
-- [docs/public_release_manifest.md](docs/public_release_manifest.md)
-- [assets/social-preview.png](assets/social-preview.png)
 
-## Repository Tree
+## Repository Guide
 
 ```text
 packages/schemas/        Schema models, registry, and schema export
