@@ -35,6 +35,19 @@
       "minLength": 1,
       "title": "Evidence",
       "type": "string"
+    },
+    "clinical_reasoning": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Brief clinical reasoning process (1-2 sentences) explaining the assessment.",
+      "title": "Clinical Reasoning"
     }
   },
   "required": [

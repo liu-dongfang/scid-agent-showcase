@@ -8,7 +8,7 @@
 - Structured logging utilities
 - Replay/import helpers and compact report reconstruction
 - Synthetic workflow definitions and toy question manifests
-- Minimal tests, README, environment template, and architecture documentation
+- Minimal tests, README, example config, and architecture documentation
 
 ## Removed Or Intentionally Excluded
 

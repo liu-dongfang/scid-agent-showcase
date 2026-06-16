@@ -11,7 +11,7 @@ This repository highlights:
 - Risk-aware interruption, trace logging, and replayable session review
 - A paper-backed system subset that stays inspectable without private data or unpublished assets
 
-**Demo:** [Watch 60s demo](docs/demo/scid-demo-60s.mp4) · [Read architecture notes](docs/architecture.md) · [Run the showcase](#quickstart)
+**Demo:** [Watch 60s demo](docs/demo/scid-demo-60s.mp4) | [Read architecture notes](docs/architecture.md) | [Run the showcase](#quickstart)
 
 ## Overview
 
@@ -74,15 +74,14 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 python -m packages.schemas.export --check
-pytest
-python examples/run_showcase.py
+python -m pytest
+python -m examples.run_showcase
 ```
 
 Useful files:
 - [docs/architecture.md](docs/architecture.md)
 - [docs/public_release_manifest.md](docs/public_release_manifest.md)
 - [config.example.yaml](config.example.yaml)
-- [.env.example](.env.example)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Repository Guide

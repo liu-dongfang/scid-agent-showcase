@@ -199,7 +199,7 @@ class EvaluatorDecision(BaseModel):
     fitness: FitnessScore = Field(..., description="Coverage/quality scores.")
     missing_info_hints: list[str] = Field(
         default_factory=list,
-        description="Natural language hints of missing information (≤2 preferred).",
+        description="Natural language hints of missing information (<=2 preferred).",
     )
     style_guidelines: list[str] = Field(
         default_factory=list,

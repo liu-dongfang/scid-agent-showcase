@@ -1,107 +1,160 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "SCID_EvaluatorDecision",
-  "type": "object",
-  "additionalProperties": false,
-  "required": [
-    "fitness",
-    "missing_info_hints",
-    "style_guidelines",
-    "decision",
-    "reason",
-    "error_flag"
-  ],
-  "properties": {
-    "fitness": {
-      "type": "object",
+  "$defs": {
+    "CriterionFitness": {
+      "description": "Fitness sub-score for a single criterion.",
+      "properties": {
+        "covered": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Whether the criterion has been covered (bool) or partial/uncertain (string).",
+          "title": "Covered"
+        },
+        "quality": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Quality/confidence of evidence for this criterion (0-1).",
+          "title": "Quality"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional short evidence note.",
+          "title": "Evidence"
+        }
+      },
+      "title": "CriterionFitness",
+      "type": "object"
+    },
+    "FitnessScore": {
+      "description": "Aggregate fitness score across required criteria.",
+      "properties": {
+        "by_criterion": {
+          "additionalProperties": {
+            "$ref": "#/$defs/CriterionFitness"
+          },
+          "description": "Per-criterion coverage/quality map.",
+          "title": "By Criterion",
+          "type": "object"
+        },
+        "overall": {
+          "description": "Weighted overall fitness score (0-1).",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Overall",
+          "type": "number"
+        }
+      },
       "required": [
         "overall"
       ],
-      "properties": {
-        "by_criterion": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object",
-            "properties": {
-              "covered": {
-                "oneOf": [
-                  {
-                    "type": "boolean"
-                  },
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "quality": {
-                "type": [
-                  "number",
-                  "null"
-                ],
-                "minimum": 0,
-                "maximum": 1
-              },
-              "evidence": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              }
-            },
-            "additionalProperties": false
-          },
-          "default": {}
-        },
-        "overall": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1
-        }
-      },
-      "additionalProperties": false
+      "title": "FitnessScore",
+      "type": "object"
+    }
+  },
+  "description": "Schema for Evaluator/Decision agent output (fitness-driven).",
+  "properties": {
+    "fitness": {
+      "$ref": "#/$defs/FitnessScore",
+      "description": "Coverage/quality scores."
     },
     "missing_info_hints": {
-      "type": "array",
+      "description": "Natural language hints of missing information (<=2 preferred).",
       "items": {
         "type": "string"
       },
-      "default": []
+      "title": "Missing Info Hints",
+      "type": "array"
     },
     "style_guidelines": {
-      "type": "array",
+      "description": "MI/TIC style reminders to inject into interviewer prompt.",
       "items": {
         "type": "string"
       },
-      "default": []
+      "title": "Style Guidelines",
+      "type": "array"
     },
     "decision": {
-      "type": "string",
+      "description": "Next-step instruction for the orchestrator.",
       "enum": [
         "move_on",
         "follow_up"
-      ]
+      ],
+      "title": "Decision",
+      "type": "string"
     },
     "reason": {
+      "description": "One-sentence rationale for the decision.",
+      "minLength": 2,
+      "title": "Reason",
       "type": "string"
     },
     "error_flag": {
-      "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "True when evaluator parsing is uncertain or schema deviated.",
+      "title": "Error Flag",
+      "type": "boolean"
     },
     "safety_hint": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Safety escalation hint when risk is detected.",
+      "title": "Safety Hint"
     },
     "error_notes": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional parser/model error notes for observability.",
+      "title": "Error Notes"
     }
-  }
+  },
+  "required": [
+    "fitness",
+    "decision",
+    "reason"
+  ],
+  "title": "EvaluatorDecision",
+  "type": "object"
 }
