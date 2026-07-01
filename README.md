@@ -11,7 +11,7 @@ This repository highlights:
 - Risk-aware interruption, event logging, and replayable session review
 - A paper-backed system subset that stays inspectable without private data or unpublished assets
 
-**Demo:** [Watch 60s demo](docs/demo/scid-demo-60s.mp4) | [Read architecture notes](docs/architecture.md) | [Run the showcase](#quickstart)
+**Demo:** [Watch workflow demo (60s)](docs/demo/scid-demo-60s.mp4) | [Read architecture notes](docs/architecture.md) | [Run the showcase](#quickstart)
 
 ## Overview
 
