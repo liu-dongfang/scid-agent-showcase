@@ -8,14 +8,14 @@ A controllable LLM-agent workflow for high-risk structured clinical interviewing
 
 This repository highlights:
 - Flow-controlled orchestration for structured interview phases and module progression
-- Risk-aware interruption, trace logging, and replayable session review
+- Risk-aware interruption, event logging, and replayable session review
 - A paper-backed system subset that stays inspectable without private data or unpublished assets
 
 **Demo:** [Watch 60s demo](docs/demo/scid-demo-60s.mp4) | [Read architecture notes](docs/architecture.md) | [Run the showcase](#quickstart)
 
 ## Overview
 
-`scid-agent-showcase` is the public-facing subset of a larger research prototype for structured clinical interviewing. The code here is intentionally narrowed to the parts that are most useful for engineering review: interview flow control, schema-backed evidence collection, structured logging, transcript replay, and compact report reconstruction.
+`scid-agent-showcase` is the public-facing subset of a larger research prototype for structured clinical interviewing. The code here is intentionally narrowed to the parts that are most useful for engineering review: interview flow control, schema-backed evidence collection, event logging, transcript replay, and compact report reconstruction.
 
 Everything included in this repository is synthetic or safe to share. Private prompts, unpublished evaluation assets, real data, and internal experiment materials are intentionally excluded.
 
@@ -36,15 +36,27 @@ Everything included in this repository is synthetic or safe to share. Private pr
 The public subset is centered around four inspectable areas:
 - [`server/orchestrator/flow_controller.py`](server/orchestrator/flow_controller.py): deterministic phase, module, and transition logic
 - [`packages/schemas/`](packages/schemas): structured extraction contracts and JSON schema export
-- [`server/utils/logger.py`](server/utils/logger.py): event logging and trace-friendly instrumentation
+- [`server/orchestrator/event_bus.py`](server/orchestrator/event_bus.py) and [`server/utils/logger.py`](server/utils/logger.py): event history and structured logging hooks
 - [`server/services/transcript_importer.py`](server/services/transcript_importer.py) and [`server/services/report_service.py`](server/services/report_service.py): replay import and compact report reconstruction
+
+## Evidence Map
+
+| Claim | Public evidence in this repo |
+| --- | --- |
+| Deterministic Flow Controller | [`server/orchestrator/flow_controller.py`](server/orchestrator/flow_controller.py), [`configs/workflow.json`](configs/workflow.json), [`tests/test_showcase_flow.py`](tests/test_showcase_flow.py) |
+| Schema-first I/O | [`packages/schemas/`](packages/schemas), [`configs/schemas/`](configs/schemas), [`tests/test_replay.py`](tests/test_replay.py) |
+| Event logging and reviewable session state | [`server/orchestrator/event_bus.py`](server/orchestrator/event_bus.py), [`server/orchestrator/session_state.py`](server/orchestrator/session_state.py), [`server/utils/logger.py`](server/utils/logger.py) |
+| Transcript replay | [`server/services/transcript_importer.py`](server/services/transcript_importer.py), [`examples/transcripts/synthetic_case.md`](examples/transcripts/synthetic_case.md) |
+| Report reconstruction | [`server/services/report_service.py`](server/services/report_service.py), [`examples/run_showcase.py`](examples/run_showcase.py) |
+
+This public repository does not include a benchmark suite, unpublished evaluation assets, full prompt library, or real interview data from the larger research workspace.
 
 ## Evaluation / Replay
 
 ![Evaluation and replay loop](assets/readme/eval-loop.png)
 
 - Risk-first checks can interrupt or skip unsafe branches before continuing the workflow.
-- Session actions and structured logs make behavior reviewable across workflow versions.
+- Session actions, event history, and structured logs make behavior reviewable across workflow versions.
 - Replay and report reconstruction turn long dialogue traces into inspectable engineering artifacts instead of one-off demos.
 
 ## What I Built
